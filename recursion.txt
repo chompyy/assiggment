@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+class Branch
+{
+    public List<Branch> branches;
+    public Branch()
+    {
+        branches = new List<Branch>();
+    }
+}
+
+class Program
+{
+    static int CalculateDepth(Branch branch)
+    {
+        int maxDepth = 0;
+        foreach (var child in branch.branches)
+        {
+            int depth = CalculateDepth(child);
+            if (depth > maxDepth)
+            {
+                maxDepth = depth;
+            }
+        }
+        return maxDepth + 1;
+    }
+
+    static void Main(string[] args)
+    {
+       
+        Branch root = new Branch();
+        Branch branch1 = new Branch();
+        Branch branch2 = new Branch();
+        Branch branch3 = new Branch();
+        Branch branch4 = new Branch();
+        root.branches.Add(branch1);
+        root.branches.Add(branch2);
+        branch1.branches.Add(branch3);
+        branch2.branches.Add(branch4);
+
+        int depth = CalculateDepth(root);
+        Console.WriteLine("Depth of provided structure: " + depth);
+    }
+}

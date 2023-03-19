@@ -1,0 +1,28 @@
+using System;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.Write("Enter hours (1-12): ");
+        int hours = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter minutes (0-59): ");
+        int minutes = int.Parse(Console.ReadLine());
+
+        
+        double hourAngle = (hours % 12 + minutes / 60) * 30;
+
+       
+        double minuteAngle = minutes * 6;
+
+       
+        double angleDiff = Math.Abs(hourAngle - minuteAngle);
+
+        
+        double lesserAngle = Math.Min(angleDiff, 360 - angleDiff);
+
+        Console.WriteLine("The lesser angle between the hour and minute hands is "+lesserAngle + " degrees.");
+        Console.ReadLine();
+    }
+}
